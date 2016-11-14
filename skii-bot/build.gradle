@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+compileJava.options.encoding = 'UTF-8'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version = '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+compileJava{
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.apache.httpcomponents:httpasyncclient:4.1.2")
+    compile("com.google.code.gson:gson:2.7")
+    compile("org.jsoup:jsoup:1.9.1")
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+

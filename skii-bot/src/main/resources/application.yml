@@ -1,0 +1,9 @@
+#bot settings
+telegramUrl: https://api.telegram.org/bot
+token: 285741728:AAHyKugTknSHjhhED25_JazOMJJ7-5_AlZg
+jasnaSnow: http://www.skiresort.info/ski-resort/jasna-nizke-tatry-chopok/snow-report/
+jasnaWeather: http://www.skiresort.info/ski-resort/jasna-nizke-tatry-chopok/weather/
+zakopaneSnow: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/snow-report/
+zakopaneWeather: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/weather/
+timeout: 60
+poolSize: 10

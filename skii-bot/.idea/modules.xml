@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skii-bot.iml" filepath="$PROJECT_DIR$/.idea/modules/skii-bot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skii-bot_main.iml" filepath="$PROJECT_DIR$/.idea/modules/skii-bot_main.iml" group="skii-bot" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/skii-bot_test.iml" filepath="$PROJECT_DIR$/.idea/modules/skii-bot_test.iml" group="skii-bot" />
+    </modules>
+  </component>
+</project>
