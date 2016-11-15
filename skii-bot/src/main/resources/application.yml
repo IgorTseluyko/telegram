@@ -7,3 +7,5 @@ zakopaneSnow: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/snow
 zakopaneWeather: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/weather/
 timeout: 60
 poolSize: 10
+maxConn: 100
+updateInterval: 2
