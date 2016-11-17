@@ -7,8 +7,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.message.BasicNameValuePair;
@@ -38,7 +36,6 @@ public class HttpManager {
     private static int poolSize;
     private static int maxConn;
     private static CloseableHttpAsyncClient httpcAsyncClient;
-    private static CloseableHttpClient httpclient;
     private String getUpdatesUri;
     private String sendMessageUri;
     private String timeout;
@@ -66,31 +63,24 @@ public class HttpManager {
                 .setMaxConnPerRoute(maxConn)
                 .build();
 
-        httpclient = HttpClients.createDefault();
         httpcAsyncClient.start();
     }
 
     @PreDestroy
     private void destroy() throws IOException {
         httpcAsyncClient.close();
-        httpclient.close();
     }
 
-    public Updates getUpdates() throws IOException, ExecutionException, InterruptedException {
-        HttpPost post = new HttpPost(getUpdatesUri);
-        String raw = sendAsync(post);
-        Updates updates = new GsonBuilder().create().fromJson(raw, Updates.class);
-        logger.info("updates received: {}", updates);
-        return updates;
-    }
-
-    public void getUpdatesWithOffset(int offset) throws IOException, InterruptedException, ExecutionException {
+    public Updates getUpdatesWithOffset(int offset) throws IOException, InterruptedException, ExecutionException {
         HttpPost post = new HttpPost(getUpdatesUri);
         List<NameValuePair> nameValuePairs = new ArrayList<>();
         nameValuePairs.add(new BasicNameValuePair("offset", String.valueOf(offset)));
         nameValuePairs.add(new BasicNameValuePair("timeout", timeout));
         post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-        sendAsync(post);
+        String response = sendAsync(post);
+        Updates updates = new GsonBuilder().create().fromJson(response, Updates.class);
+        logger.info("updates received: {}", updates);
+        return updates;
     }
 
     public void sendMessage(int chat_id, String text) throws IOException, InterruptedException, ExecutionException {
@@ -99,9 +89,7 @@ public class HttpManager {
         nameValuePairs.add(new BasicNameValuePair("chat_id", String.valueOf(chat_id)));
         nameValuePairs.add(new BasicNameValuePair("text", text));
         post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-        String response = sendAsync(post);
-        logger.info("response: {}", response);
-
+        sendAsync(post);
     }
 
     private String sendAsync(HttpUriRequest request) throws ExecutionException, InterruptedException, IOException {

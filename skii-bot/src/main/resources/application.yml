@@ -5,7 +5,7 @@ jasnaSnow: http://www.skiresort.info/ski-resort/jasna-nizke-tatry-chopok/snow-re
 jasnaWeather: http://www.skiresort.info/ski-resort/jasna-nizke-tatry-chopok/weather/
 zakopaneSnow: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/snow-report/
 zakopaneWeather: http://www.skiresort.info/ski-resort/kasprowy-wierch-zakopane/weather/
-timeout: 60
+timeOut: 60
 poolSize: 10
 maxConn: 100
-updateInterval: 2
+

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
 
     private String telegramUrl, token, jasnaSnow, jasnaWeather, zakopaneSnow, zakopaneWeather;
-    private int timeOut, poolSize, maxConn, updateInterval;
+    private int timeOut, poolSize, maxConn;
 
     public String getTelegramUrl() {
         return telegramUrl;
@@ -84,14 +84,6 @@ public class Config {
         this.maxConn = maxConn;
     }
 
-    public int getUpdateInterval() {
-        return updateInterval;
-    }
-
-    public void setUpdateInterval(int updateInterval) {
-        this.updateInterval = updateInterval;
-    }
-
     @Override
     public String toString() {
         return "Config{" +
@@ -104,7 +96,6 @@ public class Config {
                 ", timeOut=" + timeOut +
                 ", poolSize=" + poolSize +
                 ", maxConn=" + maxConn +
-                ", updateInterval=" + updateInterval +
                 '}';
     }
 }
