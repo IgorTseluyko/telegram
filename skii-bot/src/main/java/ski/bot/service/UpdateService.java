@@ -29,6 +29,7 @@ public class UpdateService {
     private static boolean isWorking;
     private static final Logger logger = LoggerFactory.getLogger(UpdateService.class);
 
+    //todo exception handling
     public void update() throws InterruptedException, IOException, ExecutionException {
         if (isWorking) return;
 
@@ -43,7 +44,6 @@ public class UpdateService {
                     int chat_id = message.chat.id;
                     offset = result.update_id + 1;
                     String userText = message.text.toLowerCase();
-                    logger.info("user text: {}", userText);
                     responseFactory.getResponse(userText).processResponse(chat_id);
                 }
             }
@@ -53,5 +53,4 @@ public class UpdateService {
     public void stop() {
         isWorking = false;
     }
-
 }
